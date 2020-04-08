@@ -10,8 +10,8 @@ import time
 def init_browser():
     """ Connects path to chromedriver """
     
-executable_path = {'executable_path': 'chromedriver.exe'}
-browser = Browser('chrome', **executable_path, headless=False)
+    executable_path = {'executable_path': 'chromedriver.exe'}
+    return Browser('chrome', **executable_path, headless=False)
 
 def scrape():
     """ Scrapes all websites for Mars data """
@@ -22,7 +22,7 @@ def scrape():
     # Use requests and BeautifulSoup to scrape Nasa News for latest news
     url = 'https://mars.nasa.gov/news/'
     response = requests.get(url)
-    soup = BeautifulSoup(response.text, 'lxml')
+    soup = bs(response.text, 'lxml')
 
     results = soup.find('div', class_='features')
     news_title = results.find('div', class_='content_title').text
@@ -35,7 +35,7 @@ def scrape():
     # Scrape Mars Weather twitter for latest weather report
     twitter_url = 'https://twitter.com/marswxreport?lang=en'
     twitter_response = requests.get(twitter_url)
-    twitter_soup = BeautifulSoup(twitter_response.text, 'lxml')
+    twitter_soup = bs(twitter_response.text, 'lxml')
     
     twitter_result = twitter_soup.find('div', class_='js-tweet-text-container')
     mars_weather = twitter_result.find('p', class_='js-tweet-text').text
