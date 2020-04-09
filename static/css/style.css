@@ -1,0 +1,4 @@
+.jumbotron {
+    background-image: url('{{ mars.featured_image_url }}');
+}
+
