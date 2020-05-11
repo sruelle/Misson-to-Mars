@@ -13,7 +13,7 @@
 
 <body>
 
-    <div class="container">
+    <div class="container-fluid">
         <div class="jumbotron mt-4 pb-1 text-center shadow">
             <h1 class="display-3">Mission to Mars</h1>
             <p class="lead">This is a simple hero unit, a simple jumbotron-style component for
@@ -29,6 +29,25 @@
         <hr>
         <h3 class="display-5 text-center"> {{mars.news_title }}</h3>
         <p class="text-justify"> {{ mars.newsp }}</p>
+        <div class="row">
+            {% for hemisphere in mars.hemisphere_image_urls %}
+            <div class='col-md-3'>
+                <h6>{{ hemisphere.title }}</h6>
+                <img class="w-100" src="{{ hemisphere.url_img }}" alt="hemisphere">
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Mars Weather</h2>
+                <p class="text-justify">{{ mars.mars_weather}}</p>
+            </div>
+
+            <div class="col-md-6">
+                {{ mars.mars_facts | safe }}
+            </div>
+        </div>
 
 
 
